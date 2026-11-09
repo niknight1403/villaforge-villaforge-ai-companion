@@ -2,15 +2,15 @@ const assert = require('assert');
 const { execSync } = require('child_process');
 
 async function runSmokeTest() {
-  console.log('Starting Smoke Test: VillaForge Core Workflow...');
+  console.log('Starting Smoke Test: User Flow Verification...');
   try {
     // Simulate core workflow: Content Generation -> Marketing Optimization
-    const result = { status: 'success', timestamp: new Date().toISOString() };
-    assert.strictEqual(result.status, 'success', 'Workflow failed to complete');
+    const output = execSync('node src/app.js --simulate-flow').toString();
+    assert.ok(output.includes('Content generated'), 'Content generation failed');
+    assert.ok(output.includes('Marketing metrics optimized'), 'Marketing optimization failed');
     console.log('Smoke Test Passed: Core workflow operational.');
-    process.exit(0);
-  } catch (err) {
-    console.error('Smoke Test Failed:', err.message);
+  } catch (error) {
+    console.error('Smoke Test Failed:', error.message);
     process.exit(1);
   }
 }
