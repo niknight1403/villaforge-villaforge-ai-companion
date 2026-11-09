@@ -1,12 +1,20 @@
-const fs = require('fs');
+const assert = require('assert');
+const { VillaForgeApp } = require('../src/app.js');
 
-function runSmokeTest() {
-  console.log('Starte Smoke-Test...');
-  if (fs.existsSync('src/app.js')) {
-    console.log('Test bestanden: src/app.js existiert.');
+async function runSmokeTest() {
+  console.log('Starting Smoke Test...');
+  try {
+    const app = require('../src/app.js');
+    const result = await app.processContent({ type: 'text', data: 'Hello World' });
+    assert.strictEqual(result.status, 'success', 'App should process content successfully');
+    
+    const errorResult = await app.processContent({ type: 'invalid', data: null });
+    assert.strictEqual(errorResult.status, 'error', 'App should handle invalid input gracefully');
+    
+    console.log('Smoke Test Passed: Core user flow and error handling verified.');
     process.exit(0);
-  } else {
-    console.error('Test fehlgeschlagen: src/app.js fehlt.');
+  } catch (err) {
+    console.error('Smoke Test Failed:', err);
     process.exit(1);
   }
 }
