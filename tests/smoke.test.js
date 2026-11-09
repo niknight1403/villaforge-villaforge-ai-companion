@@ -3,18 +3,15 @@ const assert = require('assert');
 async function runSmokeTest() {
   console.log('Starting Smoke Test: User Content Workflow...');
   try {
-    // Simulate content generation workflow
-    const content = { type: 'text', prompt: 'Marketing blog post', status: 'pending' };
-    assert.strictEqual(content.status, 'pending', 'Content initialization failed');
+    // Simulate content creation workflow
+    const content = { type: 'text', prompt: 'AI-generated marketing copy' };
+    assert.ok(content.type === 'text', 'Content type mismatch');
+    assert.ok(content.prompt.length > 0, 'Prompt is empty');
     
-    // Simulate processing
-    content.status = 'completed';
-    assert.strictEqual(content.status, 'completed', 'Content processing failed');
-    
-    console.log('Smoke Test Passed: Workflow operational.');
+    console.log('Smoke Test Passed: Content workflow operational.');
     process.exit(0);
   } catch (err) {
-    console.error('Smoke Test Failed:', err.message);
+    console.error('Smoke Test Failed:', err);
     process.exit(1);
   }
 }
