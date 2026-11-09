@@ -1,21 +1,15 @@
 const assert = require('assert');
+const app = require('../src/app.js');
 
 async function runSmokeTest() {
-  console.log('Starte Smoke-Test: Content-Workflow...');
+  console.log('Starting Smoke Test...');
   try {
-    // Simulation des Kern-Workflows: Erstellung eines Inhalts
-    const content = { type: 'text', prompt: 'Marketing-Text', status: 'pending' };
-    assert.strictEqual(content.status, 'pending', 'Initialzustand muss pending sein');
-    
-    // Simulation der Verarbeitung
-    content.status = 'processed';
-    assert.strictEqual(content.status, 'processed', 'Verarbeitung muss den Status auf processed setzen');
-    
-    console.log('Smoke-Test erfolgreich: Kern-Workflow validiert.');
+    const result = app.processContent({ type: 'text', data: 'hello' });
+    assert.strictEqual(result.success, true);
+    console.log('Smoke Test Passed!');
   } catch (err) {
-    console.error('Smoke-Test fehlgeschlagen:', err.message);
+    console.error('Smoke Test Failed:', err.message);
     process.exit(1);
   }
 }
-
 runSmokeTest();
