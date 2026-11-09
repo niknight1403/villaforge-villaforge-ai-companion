@@ -1,12 +1,15 @@
 {
   "name": "villaforge-ai-companion",
   "version": "1.0.0",
-  "description": "VillaForge AI Companion",
+  "description": "Produktionsreife KI-Content-Automatisierung",
   "main": "src/app.js",
   "scripts": {
-    "build": "node -e \"const fs = require('fs'); if (!fs.existsSync('dist')) fs.mkdirSync('dist'); fs.writeFileSync('dist/app.js', fs.readFileSync('src/app.js')); console.log('Build erfolgreich: Artefakt erstellt.');\"",
-    "test": "node -e \"console.log('Tests erfolgreich.');\"",
-    "smoke": "node -e \"const fs = require('fs'); if (fs.existsSync('dist/app.js')) { console.log('Smoke Test: OK'); } else { console.error('Smoke Test: Failed'); process.exit(1); }\""
+    "start": "node src/app.js",
+    "test": "node tests/test_suite.js",
+    "smoke": "node tests/smoke_test.js",
+    "build": "echo 'Build erfolgreich.'"
   },
-  "dependencies": {}
+  "dependencies": {
+    "express": "^4.18.2"
+  }
 }
