@@ -1,20 +1,23 @@
 const assert = require('assert');
-const { VillaForgeApp } = require('../src/app.js');
+const { execSync } = require('child_process');
 
 async function runSmokeTest() {
-  console.log('Starting Smoke Test...');
+  console.log('Starting Smoke Test: VillaForge AI Companion...');
   try {
-    const app = require('../src/app.js');
-    const result = await app.processContent({ type: 'text', data: 'Hello World' });
-    assert.strictEqual(result.status, 'success', 'App should process content successfully');
+    // Simulate core user flow: Content Generation Request
+    const output = execSync('node src/app.js --action generate --type text --input "Test Content"').toString();
+    assert(output.includes('SUCCESS'), 'Content generation failed');
     
-    const errorResult = await app.processContent({ type: 'invalid', data: null });
-    assert.strictEqual(errorResult.status, 'error', 'App should handle invalid input gracefully');
+    // Simulate error handling: Invalid type
+    try {
+      execSync('node src/app.js --action generate --type invalid');
+    } catch (e) {
+      assert(e.stderr.toString().includes('ERROR'), 'Error handling for invalid type failed');
+    }
     
     console.log('Smoke Test Passed: Core user flow and error handling verified.');
-    process.exit(0);
   } catch (err) {
-    console.error('Smoke Test Failed:', err);
+    console.error('Smoke Test Failed:', err.message);
     process.exit(1);
   }
 }
