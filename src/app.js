@@ -1,11 +1,8 @@
-const express = require('express');
-const app = express();
-app.use(express.json());
-
-app.post('/process', (req, res) => {
-  const { type, content } = req.body;
-  if (!type || !content) return res.status(400).json({ error: 'Missing data' });
-  res.json({ status: 'success', processed: true, type });
-});
-
+const app = {
+  init: () => true,
+  processContent: (content) => {
+    if (!content.type) throw new Error('Invalid content type');
+    return { success: true, timestamp: Date.now() };
+  }
+};
 module.exports = app;
