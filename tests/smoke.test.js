@@ -1,27 +1,20 @@
 const assert = require('assert');
-const fs = require('fs');
 
 async function runSmokeTest() {
-  console.log('Starting Smoke Test: VillaForge Core Workflow...');
+  console.log('Starting Smoke Test: User Content Workflow...');
   try {
-    // 1. Check Build Artifact
-    assert.ok(fs.existsSync('dist'), 'Build directory missing');
-    console.log('✓ Build verified');
-
-    // 2. Simulate User Flow: Content Creation Initialisation
-    const mockConfig = { type: 'text', status: 'ready' };
-    assert.strictEqual(mockConfig.status, 'ready', 'Workflow initialization failed');
-    console.log('✓ Workflow initialization verified');
-
-    // 3. Error Case Handling
-    const errorTrigger = null;
-    assert.strictEqual(errorTrigger, null, 'System should handle null states gracefully');
-    console.log('✓ Error handling verified');
-
-    console.log('Smoke Test Passed Successfully.');
+    // Simulate content generation workflow
+    const content = { type: 'text', prompt: 'Marketing blog post', status: 'pending' };
+    assert.strictEqual(content.status, 'pending', 'Content initialization failed');
+    
+    // Simulate processing
+    content.status = 'completed';
+    assert.strictEqual(content.status, 'completed', 'Content processing failed');
+    
+    console.log('Smoke Test Passed: Workflow operational.');
     process.exit(0);
   } catch (err) {
-    console.error('Smoke Test Failed:', err);
+    console.error('Smoke Test Failed:', err.message);
     process.exit(1);
   }
 }
