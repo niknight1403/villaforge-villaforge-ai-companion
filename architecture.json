@@ -1,0 +1,32 @@
+{
+  "project": "VillaForge AI Companion",
+  "architecture": {
+    "frontend": "Next.js (React) with TypeScript",
+    "backend": "Node.js (Express) for API Gateway",
+    "ai_service": "Python (FastAPI) for AI orchestration",
+    "database": "PostgreSQL with Prisma ORM",
+    "auth": "OAuth2/OIDC (Auth0 or Keycloak)",
+    "infrastructure": "Dockerized microservices, CI/CD via GitHub Actions"
+  },
+  "components": [
+    {
+      "name": "api-gateway",
+      "responsibility": "Request routing, rate limiting, auth validation",
+      "tech": "Node.js"
+    },
+    {
+      "name": "content-engine",
+      "responsibility": "AI content generation and optimization",
+      "tech": "Python"
+    },
+    {
+      "name": "marketing-module",
+      "responsibility": "A/B testing, analytics, distribution",
+      "tech": "Node.js"
+    }
+  ],
+  "security": {
+    "encryption": "AES-256 at rest, TLS 1.3 in transit",
+    "access": "RBAC with JWT"
+  }
+}

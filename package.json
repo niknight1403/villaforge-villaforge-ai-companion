@@ -1,0 +1,22 @@
+{
+  "name": "villaforge-ai-companion",
+  "version": "1.0.0",
+  "description": "VillaForge AI Companion - Automatisierung, Optimierung und Vermarktung von KI-Inhalten",
+  "scripts": {
+    "build": "node -e \"console.log('Build complete')\"",
+    "test": "node --test tests/run.mjs",
+    "smoke": "node --test tests/run.mjs",
+    "ci": "npm ci",
+    "build": "next build",
+    "test": "node --test tests/run.mjs",
+    "start": "next start"
+  },
+  "dependencies": {
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest"
+  },
+  "devDependencies": {
+    "jest": "latest"
+  }
+}
