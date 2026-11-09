@@ -1,12 +1,14 @@
 {
   "name": "villaforge-ai-companion",
   "version": "1.0.0",
-  "description": "VillaForge AI Companion",
-  "main": "index.js",
+  "description": "Automatisierung, Optimierung und Vermarktung von AI-Inhalten",
+  "main": "src/app.js",
   "scripts": {
-    "build": "echo 'Build erfolgreich.'",
-    "test": "echo 'Tests erfolgreich.'",
-    "smoke": "echo 'Smoke Test erfolgreich.'"
+    "build": "node -e \"console.log('Building application...'); process.exit(0);\"",
+    "test": "node tests/test_core.js",
+    "smoke": "node tests/smoke_test.js"
   },
-  "dependencies": {}
+  "dependencies": {
+    "express": "^4.18.2"
+  }
 }
