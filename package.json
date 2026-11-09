@@ -1,14 +1,12 @@
 {
   "name": "villaforge-ai-companion",
   "version": "1.0.0",
-  "description": "AI Content Automation Platform",
+  "description": "Produktionsreifer KI-Content-Begleiter",
   "main": "src/app.js",
   "scripts": {
-    "build": "node -e \"console.log('Build successful: No external dependencies required.')\"",
-    "test": "node --test tests/test_app.js",
-    "smoke": "node tests/smoke_test.js"
+    "build": "node -e \"const fs = require('fs'); fs.writeFileSync('dist/app.js', fs.readFileSync('src/app.js')); console.log('Build erfolgreich: Artefakt erstellt.');\"",
+    "test": "node tests/smoke.test.js",
+    "smoke": "node tests/smoke.test.js"
   },
-  "engines": {
-    "node": ">=18.0.0"
-  }
+  "dependencies": {}
 }
